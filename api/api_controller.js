@@ -153,27 +153,29 @@ module.exports = {
                     newCardNum: 0,
                     newColorNum: 0,
                     winlose: 0,
+                    gameStatus: false
                 };
                 user = usersPoints[token];
             }
             user.betBalance = betValue;
+            user.gameStatus = false;
 
             await CreateRandomNumber(user);
 
-            // if (token != "demo") {
-            //     try {
-            //         await axios.post(
-            //             process.env.PLATFORM_SERVER + "api/games/bet",
-            //             {
-            //                 token: token,
-            //                 amount: user.betBalance,
-            //             }
-            //         );
-            //     } catch (err) {
-            //         console.log(err);
-            //         throw new Error(err);
-            //     }
-            // }
+            if (token != "demo") {
+                try {
+                    await axios.post(
+                        process.env.PLATFORM_SERVER + "api/games/bet",
+                        {
+                            token: token,
+                            amount: user.betBalance,
+                        }
+                    );
+                } catch (err) {
+                    console.log(err);
+                    throw new Error(err);
+                }
+            }
 
             res.json({
                 status: true,
@@ -200,20 +202,20 @@ module.exports = {
             await CalcResult(user);
 
             if (user.totalMoney === 0) {
-                // if (token != "demo") {
-                //     try {
-                //         await axios.post(
-                //             process.env.PLATFORM_SERVER + "api/games/winlose",
-                //             {
-                //                 token: token,
-                //                 amount: 0,
-                //                 winState: false,
-                //             }
-                //         );
-                //     } catch (err) {
-                //         throw new Error(err);
-                //     }
-                // }
+                if (token != "demo") {
+                    try {
+                        await axios.post(
+                            process.env.PLATFORM_SERVER + "api/games/winlose",
+                            {
+                                token: token,
+                                amount: 0,
+                                winState: false,
+                            }
+                        );
+                    } catch (err) {
+                        throw new Error(err);
+                    }
+                }
                 user.betBalance = 0;
 
                 res.json({
@@ -247,30 +249,33 @@ module.exports = {
             const { token } = req.body;
 
             let user = usersPoints[token];
-            // if (token != "demo") {
-            //     try {
-            //         await axios.post(
-            //             process.env.PLATFORM_SERVER + "api/games/winlose",
-            //             {
-            //                 token: token,
-            //                 amount: user.betBalance,
-            //                 winState: true,
-            //             }
-            //         );
-            //     } catch (err) {
-            //         throw new Error(err);
-            //     }
-            // }
+            if (!user.gameStatus) {
+                user.gameStatus = true;
+                if (token != "demo") {
+                    try {
+                        await axios.post(
+                            process.env.PLATFORM_SERVER + "api/games/winlose",
+                            {
+                                token: token,
+                                amount: user.betBalance,
+                                winState: true,
+                            }
+                        );
+                    } catch (err) {
+                        throw new Error(err);
+                    }
+                }
 
-            console.log("Token: ", token, "\n", "CashOut: ", user.betBalance);
+                console.log("Token: ", token, "\n", "CashOut: ", user.betBalance);
 
-            res.json({
-                status: true,
-                moneyResult: user.betBalance,
-            });
+                res.json({
+                    status: true,
+                    moneyResult: user.betBalance,
+                });
 
-            user.betBalance = 0;
-            user.totalMoney = 0;
+                user.betBalance = 0;
+                user.totalMoney = 0;
+            }
         } catch (err) {
             console.log(err.message);
             res.json({
