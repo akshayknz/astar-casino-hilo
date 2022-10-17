@@ -196,7 +196,7 @@ module.exports = {
             console.log("Token: ", token, "\n", "BetPosition: ", betPosition);
 
             let user = usersPoints[token];
-            user.betPosition = betPosition;
+            // user.betPosition = betPosition;
 
             await CreateRandomNumber(user);
             await CalcResult(user);
