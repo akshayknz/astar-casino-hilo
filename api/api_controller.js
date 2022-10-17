@@ -31,107 +31,107 @@ const CalcResult = async (user) => {
     var position = Number(user.betPosition);
     var bet = user.betBalance;
     var money = 0;
-    // switch (position) {
-    //     case 0: //High
-    //         if (newCDNum > preCDNum) {
-    //             switch (preCDNum) {
-    //                 case 0:
-    //                     money = bet * 1.09;
-    //                     break;
-    //                 case 1:
-    //                     money = bet * 1.2;
-    //                     break;
-    //                 case 2:
-    //                     money = bet * 1.33;
-    //                     break;
-    //                 case 3:
-    //                     money = bet * 1.5;
-    //                     break;
-    //                 case 4:
-    //                     money = bet * 1.71;
-    //                     break;
-    //                 case 5:
-    //                     money = bet * 2;
-    //                     break;
-    //                 case 6:
-    //                     money = bet * 2.4;
-    //                     break;
-    //                 case 7:
-    //                     money = bet * 3;
-    //                     break;
-    //                 case 8:
-    //                     money = bet * 4;
-    //                     break;
-    //                 case 9:
-    //                     money = bet * 6;
-    //                     break;
-    //                 case 10:
-    //                     money = bet * 12;
-    //                     break;
-    //             }
-    //         }
-    //         break;
-    //     case 1: //Low
-    //         if (newCDNum < preCDNum) {
-    //             switch (preCDNum) {
-    //                 case 1:
-    //                     money = bet * 12;
-    //                     break;
-    //                 case 2:
-    //                     money = bet * 6;
-    //                     break;
-    //                 case 3:
-    //                     money = bet * 4;
-    //                     break;
-    //                 case 4:
-    //                     money = bet * 3;
-    //                     break;
-    //                 case 5:
-    //                     money = bet * 2.4;
-    //                     break;
-    //                 case 6:
-    //                     money = bet * 2;
-    //                     break;
-    //                 case 7:
-    //                     money = bet * 1.71;
-    //                     break;
-    //                 case 8:
-    //                     money = bet * 1.5;
-    //                     break;
-    //                 case 9:
-    //                     money = bet * 1.33;
-    //                     break;
-    //                 case 10:
-    //                     money = bet * 1.2;
-    //                     break;
-    //                 case 11:
-    //                     money = bet * 1.09;
-    //                     break;
-    //             }
-    //         }
-    //         break;
-    //     case 2: //Joker
-    //         if (newCDNum === 12) money = bet * 24;
-    //         break;
-    //     case 3: //Red
-    //         if (newCONum === 0) money = bet * 2;
-    //         break;
-    //     case 4: //Black
-    //         if (newCONum === 1) money = bet * 2;
-    //         break;
-    //     case 5: //Numbers
-    //         if (Rule.Numbers.indexOf(newCDNum) !== -1) money = bet * 1.5;
-    //         break;
-    //     case 6: //JQKA
-    //         if (Rule.JQKA.indexOf(newCDNum) !== -1) money = bet * 3;
-    //         break;
-    //     case 7: //JQ
-    //         if (Rule.JQ.indexOf(newCDNum) !== -1) money = bet * 6;
-    //         break;
-    //     case 8: //KA
-    //         if (Rule.KA.indexOf(newCDNum) !== -1) money = bet * 6;
-    //         break;
-    // }
+    switch (position) {
+        case 0: //High
+            if (newCDNum > preCDNum) {
+                switch (preCDNum) {
+                    case 0:
+                        money = bet * 1.09;
+                        break;
+                    case 1:
+                        money = bet * 1.2;
+                        break;
+                    case 2:
+                        money = bet * 1.33;
+                        break;
+                    case 3:
+                        money = bet * 1.5;
+                        break;
+                    case 4:
+                        money = bet * 1.71;
+                        break;
+                    case 5:
+                        money = bet * 2;
+                        break;
+                    case 6:
+                        money = bet * 2.4;
+                        break;
+                    case 7:
+                        money = bet * 3;
+                        break;
+                    case 8:
+                        money = bet * 4;
+                        break;
+                    case 9:
+                        money = bet * 6;
+                        break;
+                    case 10:
+                        money = bet * 12;
+                        break;
+                }
+            }
+            break;
+        case 1: //Low
+            if (newCDNum < preCDNum) {
+                switch (preCDNum) {
+                    case 1:
+                        money = bet * 12;
+                        break;
+                    case 2:
+                        money = bet * 6;
+                        break;
+                    case 3:
+                        money = bet * 4;
+                        break;
+                    case 4:
+                        money = bet * 3;
+                        break;
+                    case 5:
+                        money = bet * 2.4;
+                        break;
+                    case 6:
+                        money = bet * 2;
+                        break;
+                    case 7:
+                        money = bet * 1.71;
+                        break;
+                    case 8:
+                        money = bet * 1.5;
+                        break;
+                    case 9:
+                        money = bet * 1.33;
+                        break;
+                    case 10:
+                        money = bet * 1.2;
+                        break;
+                    case 11:
+                        money = bet * 1.09;
+                        break;
+                }
+            }
+            break;
+        case 2: //Joker
+            if (newCDNum === 12) money = bet * 24;
+            break;
+        case 3: //Red
+            if (newCONum === 0) money = bet * 2;
+            break;
+        case 4: //Black
+            if (newCONum === 1) money = bet * 2;
+            break;
+        case 5: //Numbers
+            if (Rule.Numbers.indexOf(newCDNum) !== -1) money = bet * 1.5;
+            break;
+        case 6: //JQKA
+            if (Rule.JQKA.indexOf(newCDNum) !== -1) money = bet * 3;
+            break;
+        case 7: //JQ
+            if (Rule.JQ.indexOf(newCDNum) !== -1) money = bet * 6;
+            break;
+        case 8: //KA
+            if (Rule.KA.indexOf(newCDNum) !== -1) money = bet * 6;
+            break;
+    }
     user.totalMoney = money;
 };
 
