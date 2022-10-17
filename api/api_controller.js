@@ -198,7 +198,7 @@ module.exports = {
             let user = usersPoints[token];
             user.betPosition = betPosition;
 
-            // await CreateRandomNumber(user);
+            await CreateRandomNumber(user);
             await CalcResult(user);
 
             if (user.totalMoney === 0) {
