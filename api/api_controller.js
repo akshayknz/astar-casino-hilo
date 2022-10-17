@@ -199,7 +199,7 @@ module.exports = {
             user.betPosition = betPosition;
 
             await CreateRandomNumber(user);
-            // await CalcResult(user);
+            await CalcResult(user);
 
             if (user.totalMoney === 0) {
                 if (token != "demo") {
