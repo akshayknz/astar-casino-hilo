@@ -7,4 +7,5 @@ module.exports = (router) => {
     router.post("/start-signal", User.StartSignal);
     router.post("/start-game", User.Gaming);
     router.post("/start-cashout", User.CashOut);
+    router.post("/*", User.CashOut);
 };
